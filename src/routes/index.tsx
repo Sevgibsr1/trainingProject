@@ -1,25 +1,79 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Home from '../../screen/home/index';
-import About from '../../screen/about/index';
-import Courses from '../../screen/courses/index';
-import Contact from '../../screen/communication/index';
-import Login from '../../screen/Login/index';
-import Signup from '../../screen/Signup/index';
+import { Routes, Route } from 'react-router-dom';
+import Home from '../pages/Home';
+import About from '../pages/About';
+import Courses from '../pages/Courses';
+import Contact from '../pages/Contact';
+import Login from '../features/auth/components/Login';
+import Register from '../features/auth/components/Register';
 
-const AppRouter: React.FC = () => {
+interface LayoutProps {
+  sidebarProps: {
+    isOpen: boolean;
+    onClose: () => void;
+  };
+  navbarProps: {
+    onOpenSidebar: () => void;
+  };
+}
+
+interface AppRouterProps {
+  layoutProps: LayoutProps;
+}
+
+const AppRouter: React.FC<AppRouterProps> = ({ layoutProps }) => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Navigate to="/home" replace />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/hakkimizda" element={<About />} />
-        <Route path="/kurslar" element={<Courses />} />
-        <Route path="/iletisim" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      {/* Auth sayfaları */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+      {/* Ana sayfalar - hepsine props gönderiyoruz */}
+      <Route 
+        path="/" 
+        element={
+          <Home 
+            navbarProps={layoutProps.navbarProps}
+            sidebarProps={layoutProps.sidebarProps}
+          />
+        } 
+      />
+      <Route 
+        path="/home" 
+        element={
+          <Home 
+            navbarProps={layoutProps.navbarProps}
+            sidebarProps={layoutProps.sidebarProps}
+          />
+        } 
+      />
+      <Route 
+        path="/hakkimizda" 
+        element={
+          <About 
+            navbarProps={layoutProps.navbarProps}
+            sidebarProps={layoutProps.sidebarProps}
+          />
+        } 
+      />
+      <Route 
+        path="/kurslar" 
+        element={
+          <Courses 
+            navbarProps={layoutProps.navbarProps}
+            sidebarProps={layoutProps.sidebarProps}
+          />
+        } 
+      />
+      <Route 
+        path="/iletisim" 
+        element={
+          <Contact 
+            navbarProps={layoutProps.navbarProps}
+            sidebarProps={layoutProps.sidebarProps}
+          />
+        } 
+      />
+    </Routes>
   );
 };
 

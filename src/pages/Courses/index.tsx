@@ -1,9 +1,20 @@
 import React, { useState } from 'react';
-import { Button } from '../../src/components/ui/button'
+import { Button } from '../../components/ui/button'
 import { useNavigate } from 'react-router-dom';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../../src/components/ui/card'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../../components/ui/card'
+import Navbar from '../../components/layouts/Navbar';
+import Sidebar from '../../components/layouts/Sidebar';
 
-
+// Props interface'i
+interface CoursesProps {
+  navbarProps?: {
+    onOpenSidebar: () => void;
+  };
+  sidebarProps?: {
+    isOpen: boolean;
+    onClose: () => void;
+  };
+}
 
 interface Course {
   id: number;
@@ -104,13 +115,13 @@ const getLevelTextColor = (level: string) => {
   return 'bg-gray-100 text-gray-800';
 };
 
-const Kurslar: React.FC = () => {
+const Courses: React.FC<CoursesProps> = ({ navbarProps, sidebarProps }) => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   const handleNavigation = (path: string) => {
-    navigate(path)
+    navigate(path);
   };
 
   const filteredCourses = courses.filter(course => {
@@ -123,53 +134,16 @@ const Kurslar: React.FC = () => {
 
   const categories = ['all', ...new Set(courses.map(courses => courses.category))];
 
-
   return (
-    <div className='flex flex-col min-h-screen'>
-    //navbar
-      <header className='fixed top-0 left-0 right-0 bg-[#062e51] text-white shadow-lg z-50'>
-        <div className='container mx-auto px-4'>
-          <div className='flex justify-between items-center h-16'>
-            <h1 className='text-2xl font-bold cursor-pointer'>
-              BAŞAR YAZILIM KURDU
-            </h1>
-            <div className='flex items-center'>
-            </div>
-
-          // navbar pc mobil ekle
-            <nav className='hidden md:flex space-x-8'>
-              <Button
-                onClick={() => handleNavigation('/home')}
-                className='text-white hover:border-b-2 border-blue-200 transition-all duration-200 font-medium cursor-pointer bg-transparent'
-              >
-                Ana Sayfa
-              </Button>
-              <Button
-                onClick={() => handleNavigation('/hakkimizda')}
-                className='text-white hover:border-b-2 border-blue-200 transition-all duration-200 font-medium cursor-pointer bg-transparent'
-              >
-                Hakkımızda
-              </Button>
-              <Button
-                onClick={() => handleNavigation('/kurslar')}
-                className='text-white hover:border-b-2 border-blue-200 transition-all duration-200 font-medium cursor-pointer bg-transparent'
-              >
-                Kurslar
-              </Button>
-              <Button
-                onClick={() => handleNavigation('/iletisim')}
-                className='text-white hover:border-b-2 border-blue-200 transition-all duration-200 font-medium cursor-pointer bg-transparent'
-              >
-                İletişim
-              </Button>
-            </nav>
-          </div>
-        </div>
-      </header>
-
+    <div className="min-h-screen bg-gray-50">
+      {/* Navbar'ı props ile çağırma */}
+      {navbarProps && <Navbar {...navbarProps} />}
+      
+      {/* Sidebar'ı props ile çağırma */}
+      {sidebarProps && <Sidebar {...sidebarProps} />}
 
       {/* Main Content */}
-      <main className="container mx-auto flex-grow p-6 mt-16">
+      <main className="container mx-auto flex-grow p-6">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
@@ -251,4 +225,4 @@ const Kurslar: React.FC = () => {
 };
 
 
-export default Kurslar;
+export default Courses;

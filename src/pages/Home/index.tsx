@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import Navbar from '../../components/layouts/Navbar';
+import Sidebar from '../../components/layouts/Sidebar';
 
 import {
   Card,
@@ -9,184 +10,37 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../../src/components/ui/card"
-import { Button } from '../../src/components/ui/button';
+} from "../../components/ui/card"
+import { Button } from '../../components/ui/button';
 
+// Props interface'i
+interface HomeProps {
+  navbarProps?: {
+    onOpenSidebar: () => void;
+  };
+  sidebarProps?: {
+    isOpen: boolean;
+    onClose: () => void;
+  };
+}
 
-const Home: React.FC = () => {
+const Home: React.FC<HomeProps> = ({ navbarProps, sidebarProps }) => {
   const navigate = useNavigate();
-  const [sidebarOpen, setSidebarOpen] = React.useState(false);
-  const sidebarRef = useRef<HTMLDivElement>(null); // Sidebar için referans tutuyorum burda 
-
 
   const handleNavigation = (path: string) => {
     navigate(path);
-    setSidebarOpen(false);
   };
 
-  // Sayfanın herhangi bir yerine tıklanınca sidebarı kapatılmasını sağlıcam burda 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
-        setSidebarOpen(false);
-      }
-    }
-
-    if (sidebarOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [sidebarOpen]);
-
   return (
-    <div className='flex flex-col min-h-screen'>
-      <button
-        onClick={() => setSidebarOpen(!sidebarOpen)}
-        className="fixed top-5 left-4 z-50 p-2 rounded-md bg-[#062e51] text-white"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-
-
-      {/* Sidebar */}
-      <div
-        ref={sidebarRef}
-        className={`fixed inset-y-0 left-0 transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out z-50 w-96 bg-white shadow-xl h-full overflow-y-auto`}
-      >
-        <div className="p-6">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-[#062e51]">Başar Eğitim</h2>
-            <button
-              onClick={() => setSidebarOpen(false)}
-              className="text-gray-500 hover:text-gray-700"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Menü */}
-          <nav className="space-y-4">
-            <a onClick={() => setSidebarOpen(false)} className="flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-blue-100 hover:text-[#062e51] cursor-pointer">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-              Profil
-            </a>
-            <a onClick={() => setSidebarOpen(false)} className="flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-blue-100 hover:text-[#062e51] cursor-pointer">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-              Kurslarım
-            </a>
-            <a onClick={() => setSidebarOpen(false)} className="flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-blue-100 hover:text-[#062e51] cursor-pointer">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-              </svg>
-              Gece Modu
-            </a>
-            <a onClick={() => setSidebarOpen(false)} className="flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-blue-100 hover:text-[#062e51] cursor-pointer">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              Ayarlar
-            </a>
-          </nav>
-
-          <div className="mt-8 pt-8 border-t border-gray-200">
-            <Button
-
-              className="w-full bg-[#062e51] text-white py-2 rounded hover:bg-blue-700 transition-colors duration-200"
-              onClick={() => handleNavigation('/login')}
-            >
-              Giriş Yap
-            </Button>
-          </div>
-
-
-        </div>
-      </div>
-
-
-
-      {/* <div className="mt-8 pt-8 border-t border-gray-200">
-            <h3 className="text-lg font-medium text-gray-800 mb-4">Kategoriler</h3>
-            <div className="space-y-2">
-              <a className="block text-gray-600 hover:text-[#062e51] transition duration-200 cursor-pointer">
-                Frontend Geliştirme
-              </a>
-              <a className="block text-gray-600 hover:text-[#062e51] transition duration-200 cursor-pointer">
-                Backend Geliştirme
-              </a>
-              <a className="block text-gray-600 hover:text-[#062e51] transition duration-200 cursor-pointer">
-                Veri Bilimi
-              </a>
-              <a className="block text-gray-600 hover:text-[#062e51] transition duration-200 cursor-pointer">
-                Mobil Uygulama
-              </a>
-            </div>
-          </div> */}
-
-
+    <div className="min-h-screen bg-gray-50">
+      {/* Navbar'ı props ile çağırma */}
+      {navbarProps && <Navbar {...navbarProps} />}
+      
+      {/* Sidebar'ı props ile çağırma */}
+      {sidebarProps && <Sidebar {...sidebarProps} />}
 
       {/* Main Content */}
       <div className="flex-1">
-        <header className='fixed top-0 left-0 right-0 bg-[#062e51] text-white shadow-lg z-30'>
-          <div className='container mx-auto px-4'>
-            <div className='flex justify-between items-center h-16'>
-              <h1 className='text-2xl font-bold cursor-pointer'>
-                Başar Eğitim
-              </h1>
-              <div className='flex items-center'>
-              </div>
-
-            // navbar pc mobil ekle ve çek ayrı ayrı unutma
-              <nav className='hidden md:flex space-x-8'>
-                <Button
-                  onClick={() => handleNavigation('/home')}
-                  className='text-white hover:border-b-2 border-blue-200 transition-all duration-200 font-medium cursor-pointer bg-transparent'
-                >
-                  Ana Sayfa
-                </Button>
-                <Button
-                  onClick={() => handleNavigation('/hakkimizda')}
-                  className='text-white hover:border-b-2 border-blue-200 transition-all duration-200 font-medium cursor-pointer bg-transparent'
-                >
-                  Hakkımızda
-                </Button>
-                <Button
-                  onClick={() => handleNavigation('/kurslar')}
-                  className='text-white hover:border-b-2 border-blue-200 transition-all duration-200 font-medium cursor-pointer bg-transparent'
-                >
-                  Kurslar
-                </Button>
-                <Button
-                  onClick={() => handleNavigation('/iletisim')}
-                  className='text-white hover:border-b-2 border-blue-200 transition-all duration-200 font-medium cursor-pointer bg-transparent'
-                >
-                  İletişim
-                </Button>
-                <Button
-                  onClick={() => handleNavigation('/login')}
-                  className='text-white border-2 border-white hover:bg-white hover:text-[#062e51] transition-all duration-200 font-medium cursor-pointer bg-transparent'
-                >
-                  Giriş Yap
-                </Button>
-              </nav>
-            </div>
-          </div>
-        </header>
-
-
         <main className="flex-grow">
           <section className="relative bg-[#062e51] text-white pt-24 pb-32">
             <div className="container mx-auto px-4">
@@ -218,13 +72,10 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-
             {/* Stats Section */}
             <div className="absolute bottom-0 left-0 right-0 transform translate-y-1/2">
               <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-
-
                   <Card className="shadow-lg">
                     <CardContent className="p-6 text-center">
                       <div className="text-4xl font-bold text-[#062e51] mb-2">5000+</div>
@@ -255,10 +106,6 @@ const Home: React.FC = () => {
                 </div>
               </div>
             </div>
-
-
-
-
           </section>
 
           {/* Popular Courses Section */}
@@ -270,9 +117,6 @@ const Home: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-
-
                 <Card className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
                   <CardHeader className="h-64 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center p-8 rounded-t-2xl">
                     <CardTitle className="text-3xl font-bold text-white">full Stack</CardTitle>
@@ -362,8 +206,6 @@ const Home: React.FC = () => {
               </Button>
             </div>
           </section>
-
-
 
           <section className='py-20 bg-white'>
             <div className='container mx-auto px-4'>
@@ -460,8 +302,6 @@ const Home: React.FC = () => {
             </div>
           </section>
 
-
-
           <section className="py-20 bg-gray-50">
             <div className="container mx-auto px-4">
               <div className="text-center mb-16">
@@ -535,12 +375,9 @@ const Home: React.FC = () => {
                     </p>
                   </CardContent>
                 </Card>
-
               </div>
             </div>
           </section>
-
-
 
           <section className="py-20 bg-[#062e51] text-white">
             <div className="container mx-auto px-4 text-center">
@@ -569,6 +406,5 @@ const Home: React.FC = () => {
     </div>
   )
 }
-
 
 export default Home;

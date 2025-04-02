@@ -20,7 +20,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "src/features/auth/components/Login", "src/features/auth/components/signup", "src/features/auth/components/Login"],
   "references": [
     { "path": "./tsconfig.node.json" }
   ]

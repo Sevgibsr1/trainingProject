@@ -1,13 +1,26 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../../src/components/ui/card";
-import { Button } from '../../src/components/ui/button';
-import { Input } from "../../src/components/ui/input";
-import { Textarea } from "../../src/components/ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../../components/ui/card";
+import { Button } from '../../components/ui/button';
+import { Input } from "../../components/ui/input";
+import { Textarea } from "../../components/ui/textarea";
 import { toast, Toaster } from 'sonner';
 import emailjs from '@emailjs/browser';
+import Navbar from '../../components/layouts/Navbar';
+import Sidebar from '../../components/layouts/Sidebar';
 
-const Iletisim: React.FC = () => {
+// Props interface'i
+interface ContactProps {
+  navbarProps?: {
+    onOpenSidebar: () => void;
+  };
+  sidebarProps?: {
+    isOpen: boolean;
+    onClose: () => void;
+  };
+}
+
+const Contact: React.FC<ContactProps> = ({ navbarProps, sidebarProps }) => {
   const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,51 +53,16 @@ const Iletisim: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="min-h-screen bg-gray-50">
+      {/* Navbar'ı props ile çağırma */}
+      {navbarProps && <Navbar {...navbarProps} />}
+      
+      {/* Sidebar'ı props ile çağırma */}
+      {sidebarProps && <Sidebar {...sidebarProps} />}
+
       <Toaster position="top-right" />
-      //navbar
-      <header className='fixed top-0 left-0 right-0 bg-[#062e51] text-white shadow-lg z-50'>
-        <div className='container mx-auto px-4'>
-          <div className='flex justify-between items-center h-16'>
-            <h1 className='text-2xl font-bold cursor-pointer'>
-              BAŞAR YAZILIM KURDU
-            </h1>
-            <div className='flex items-center'>
-            </div>
-
-          // navbar pc mobil ekle
-            <nav className='hidden md:flex space-x-8'>
-              <Button
-                onClick={() => handleNavigation('/home')}
-                className='text-white hover:border-b-2 border-blue-200 transition-all duration-200 font-medium cursor-pointer bg-transparent'
-              >
-                Ana Sayfa
-              </Button>
-              <Button
-                onClick={() => handleNavigation('/hakkimizda')}
-                className='text-white hover:border-b-2 border-blue-200 transition-all duration-200 font-medium cursor-pointer bg-transparent'
-              >
-                Hakkımızda
-              </Button>
-              <Button
-                onClick={() => handleNavigation('/kurslar')}
-                className='text-white hover:border-b-2 border-blue-200 transition-all duration-200 font-medium cursor-pointer bg-transparent'
-              >
-                Kurslar
-              </Button>
-              <Button
-                onClick={() => handleNavigation('/iletisim')}
-                className='text-white hover:border-b-2 border-blue-200 transition-all duration-200 font-medium cursor-pointer bg-transparent'
-              >
-                İletişim
-              </Button>
-            </nav>
-          </div>
-        </div>
-      </header>
-
       {/* Main Content */}
-      <main className="flex-grow pt-16">
+      <main className="flex-grow">
         {/* Contact Header */}
         <div className="text-white py-16">
           <div className="container mx-auto px-4 text-center">
@@ -239,4 +217,4 @@ const Iletisim: React.FC = () => {
   );
 };
 
-export default Iletisim;
+export default Contact;

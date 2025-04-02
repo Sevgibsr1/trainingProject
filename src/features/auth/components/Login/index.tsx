@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { EmailInput, PasswordInput } from "../../src/components/Input";
-import { Button } from "../../src/components/ui/button";
-import Wrapper from "../../src/components/Wrapper";
+import { Input } from "../../../../components/ui/input";
+import { Button } from "../../../../components/ui/button";
+import Wrapper from "../../../../components/Wrapper";
 import * as z from "zod";
 import { GoogleLogin, GoogleOAuthProvider, CredentialResponse } from "@react-oauth/google";
-import { useAuthStore } from '../../src/store/authStore';
+import { useAuthStore } from '../../../../store/authStore';
 
 // Zod ile doğrulama yapıyoruz burdaa
 const loginSchema = z.object({
@@ -72,7 +72,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <Wrapper backgroundImage="assets/login_resim.jpg">
+    <Wrapper backgroundImage="../src/assets/login_resim.jpg">
       <div className="max-w-md w-full space-y-8 backdrop-blur-xl p-8 rounded-xl shadow-xl">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-amber-50">
@@ -81,16 +81,23 @@ const Login: React.FC = () => {
         </div>
         <form className="mt-8 space-y-6 text-amber-50" onSubmit={handleSubmit}>
           <div className="space-y-4">
-            <EmailInput
+
+            <Input
+              type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
+              className="appearance-none rounded-md relative block w-full px-3 py-2 border border-amber-300 placeholder-amber-500 text-amber-900 focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:z-10 sm:text-sm"
+              placeholder="E-posta adresi"
             />
 
-            <PasswordInput
+            <Input
+              type="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
+              className="appearance-none rounded-md relative block w-full px-3 py-2 border border-amber-300 placeholder-amber-500 text-amber-900 focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:z-10 sm:text-sm"
+              placeholder="Şifre"
             />
 
             {error && <p className="text-red-500 text-sm">{error}</p>}
@@ -108,7 +115,7 @@ const Login: React.FC = () => {
         <div className="text-center text-sm">
           <span className="text-amber-50">Hesabınız yok mu?</span>
           <Button
-            onClick={() => navigate("/signup")}
+            onClick={() => navigate("/register")}
             variant="link"
             className="ml-2 text-amber-50 bg-amber-600"
           >
@@ -117,12 +124,23 @@ const Login: React.FC = () => {
         </div>
 
         <div className="mt-6 text-center">
-          <GoogleOAuthProvider clientId="529993557588-vrqpeqdc09nk5bl4141frv0f4oejkn55.apps.googleusercontent.com">
-            <GoogleLogin
-              onSuccess={handleGoogleSuccess}
-              onError={handleGoogleFailure}
-              useOneTap
-            />
+          <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+            <div className="flex justify-center">
+              <GoogleLogin
+                onSuccess={handleGoogleSuccess}
+                onError={handleGoogleFailure}
+                type="standard"
+                theme="outline"
+                size="large"
+                text="signin_with"
+                shape="rectangular"
+                locale="tr"
+                width="300"
+                auto_select={false}
+                useOneTap={false}
+                cancel_on_tap_outside={true}
+              />
+            </div>
           </GoogleOAuthProvider>
         </div>
       </div>
