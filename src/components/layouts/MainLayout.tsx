@@ -23,6 +23,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({
     setIsSidebarOpen(false);
   };
 
+  
+
   return (
     <div className="min-h-screen bg-gray-50">
       {showNavbar && <Navbar onOpenSidebar={handleSidebarToggle} />}
