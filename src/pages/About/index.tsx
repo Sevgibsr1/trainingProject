@@ -26,18 +26,13 @@ const About: React.FC<AboutProps> = ({ navbarProps, sidebarProps }) => {
 			<main className="container mx-auto flex-grow p-6">
 				<div className="max-w-7xl mx-auto">
 					{/* Hero Section */}
-					<div className="relative h-[400px] rounded-xl overflow-hidden mb-12">
-						<img
-							src="/about-hero.jpg"
-							alt="Başar Eğitim"
-							className="w-full h-full object-cover"
-						/>
+					<div className="hero-section relative h-[300px] sm:h-[350px] md:h-[400px] rounded-xl overflow-hidden mb-8 md:mb-12">
 						<div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-transparent flex items-center">
-							<div className="text-white p-8 md:p-16 max-w-2xl">
-								<h1 className="text-4xl md:text-5xl font-bold mb-4">
+							<div className="text-white p-4 sm:p-8 md:p-16 max-w-2xl">
+								<h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4">
 									Başar Eğitim ile Geleceğe Hazırlanın
 								</h1>
-								<p className="text-lg md:text-xl text-blue-100">
+								<p className="text-base sm:text-lg md:text-xl text-blue-100">
 									2024'ten beri binlerce öğrenciye kaliteli eğitim hizmeti
 									sunuyoruz.
 								</p>
@@ -46,7 +41,7 @@ const About: React.FC<AboutProps> = ({ navbarProps, sidebarProps }) => {
 					</div>
 
 					{/* Mission & Vision */}
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+					<div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12">
 						<div className="bg-white p-8 rounded-xl shadow-lg">
 							<div className="flex items-center mb-6">
 								<div className="bg-blue-100 p-3 rounded-full mr-4">
@@ -110,11 +105,11 @@ const About: React.FC<AboutProps> = ({ navbarProps, sidebarProps }) => {
 					</div>
 
 					{/* Values */}
-					<div className="mb-12">
-						<h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+					<div className="mb-8 md:mb-12">
+						<h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-6 md:mb-8">
 							Değerlerimiz
 						</h2>
-						<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+						<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
 							<div className="bg-white p-6 rounded-xl shadow-lg text-center">
 								<div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
 									{/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
@@ -193,16 +188,11 @@ const About: React.FC<AboutProps> = ({ navbarProps, sidebarProps }) => {
 
 					{/* Team Section */}
 					<div>
-						<h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+						<h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-6 md:mb-8">
 							Ekibimiz
 						</h2>
-						<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-							<div className="bg-white rounded-xl shadow-lg overflow-hidden">
-								<img
-									src="/team-member-1.jpg"
-									alt="Sevgi Başar"
-									className="w-full h-64 object-cover"
-								/>
+						<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+							<div className="team-card bg-white rounded-xl shadow-lg overflow-hidden">
 								<div className="p-6">
 									<h3 className="text-xl font-bold text-gray-800 mb-1">
 										Sevgi Başar
@@ -215,12 +205,7 @@ const About: React.FC<AboutProps> = ({ navbarProps, sidebarProps }) => {
 								</div>
 							</div>
 
-							<div className="bg-white rounded-xl shadow-lg overflow-hidden">
-								<img
-									src="/team-member-2.jpg"
-									alt="Ahmet Yılmaz"
-									className="w-full h-64 object-cover"
-								/>
+							<div className="team-card bg-white rounded-xl shadow-lg overflow-hidden">
 								<div className="p-6">
 									<h3 className="text-xl font-bold text-gray-800 mb-1">
 										Ahmet Yılmaz
@@ -233,12 +218,7 @@ const About: React.FC<AboutProps> = ({ navbarProps, sidebarProps }) => {
 								</div>
 							</div>
 
-							<div className="bg-white rounded-xl shadow-lg overflow-hidden">
-								<img
-									src="/team-member-3.jpg"
-									alt="Ayşe Kaya"
-									className="w-full h-64 object-cover"
-								/>
+							<div className="team-card bg-white rounded-xl shadow-lg overflow-hidden">
 								<div className="p-6">
 									<h3 className="text-xl font-bold text-gray-800 mb-1">
 										Ayşe Kaya

@@ -7,7 +7,6 @@ import {
 	CardTitle,
 	CardDescription,
 	CardContent,
-	CardFooter,
 } from "../../components/ui/card";
 import Navbar from "../../components/layouts/Navbar";
 import Sidebar from "../../components/layouts/Sidebar";
@@ -157,17 +156,17 @@ const Courses: React.FC<CoursesProps> = ({ navbarProps, sidebarProps }) => {
 			<main className="container mx-auto flex-grow p-6">
 				<div className="max-w-7xl mx-auto">
 					{/* Header */}
-					<div className="text-center mb-12">
-						<h1 className="text-4xl font-bold text-gray-800 mb-4">
+					<div className="text-center mb-8 md:mb-12">
+						<h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2 md:mb-4">
 							Kurslarımız
 						</h1>
-						<p className="text-gray-600">
+						<p className="text-gray-600 text-base sm:text-lg">
 							Kariyerinizi geliştirecek en iyi kursları keşfedin
 						</p>
 					</div>
 
 					{/* Search and Filter */}
-					<div className="mb-8 flex flex-col md:flex-row gap-4 items-center justify-between">
+					<div className="mb-6 md:mb-8 flex flex-col md:flex-row gap-4 items-center justify-between">
 						<div className="w-full md:w-1/3">
 							<input
 								type="text"
@@ -177,7 +176,7 @@ const Courses: React.FC<CoursesProps> = ({ navbarProps, sidebarProps }) => {
 								className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
 							/>
 						</div>
-						<div className="flex gap-2">
+						<div className="flex flex-wrap gap-2">
 							{categories.map((category) => (
 								<Button
 									key={category}
@@ -195,11 +194,11 @@ const Courses: React.FC<CoursesProps> = ({ navbarProps, sidebarProps }) => {
 					</div>
 
 					{/* Course Grid */}
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
 						{filteredCourses.map((course) => (
 							<Card
 								key={course.id}
-								className="overflow-hidden hover:shadow-xl transition-shadow duration-300"
+								className="course-card overflow-hidden hover:shadow-xl transition-shadow duration-300"
 							>
 								<div
 									className={`h-48 ${getLevelColor(course.level)} flex items-center justify-center p-8`}
@@ -212,26 +211,26 @@ const Courses: React.FC<CoursesProps> = ({ navbarProps, sidebarProps }) => {
 									<CardTitle className="text-xl text-gray-800">
 										{course.title}
 									</CardTitle>
-									<CardDescription className="text-gray-600">
+									<CardDescription className="text-sm text-gray-600 course-description">
 										{course.description}
 									</CardDescription>
 								</CardHeader>
 								<CardContent>
 									<div className="flex items-center mb-4">
 										<div
-											className={`${getLevelTextColor(course.level)} text-sm font-medium px-2.5 py-0.5 rounded-full`}
+											className={`level-badge ${course.level.includes("Başlangıç") ? "beginner" : course.level.includes("Orta") ? "intermediate" : "advanced"} ${getLevelTextColor(course.level)} text-sm font-medium px-2.5 py-0.5 rounded-full`}
 										>
 											{course.level}
 										</div>
 										<div className="mx-2 text-gray-300">|</div>
-										<div className="text-gray-600 text-sm">
+										<div className="text-gray-600 text-sm course-duration">
 											{course.duration}
 										</div>
 									</div>
 									<div className="flex items-center justify-between">
 										<div className="flex items-center">
 											<span className="text-yellow-400">*</span>
-											<span className="ml-1 text-gray-600">
+											<span className="ml-1 text-gray-600 course-rating">
 												{course.rating}
 											</span>
 											<span className="ml-1 text-gray-400">
@@ -240,13 +239,6 @@ const Courses: React.FC<CoursesProps> = ({ navbarProps, sidebarProps }) => {
 										</div>
 									</div>
 								</CardContent>
-								<CardFooter>
-									<Button
-										className={`w-full ${getLevelColor(course.level)} text-white py-2 px-4 rounded-lg hover:opacity-90 transition-colors duration-200`}
-									>
-										Kursa Katıl
-									</Button>
-								</CardFooter>
 							</Card>
 						))}
 					</div>

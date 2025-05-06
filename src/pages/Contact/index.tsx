@@ -70,21 +70,21 @@ const Contact: React.FC<ContactProps> = ({ navbarProps, sidebarProps }) => {
 			{/* Main Content */}
 			<main className="flex-grow">
 				{/* Contact Header */}
-				<div className="text-white py-16">
+				<div className="text-white py-10 sm:py-12 md:py-16">
 					<div className="container mx-auto px-4 text-center">
-						<h1 className="text-4xl font-bold mb-4 text-black">
+						<h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 text-black">
 							İletişime Geçin
 						</h1>
-						<p className="text-xl text-gray-700">
+						<p className="text-base sm:text-lg md:text-xl text-gray-700">
 							Sorularınız için bize ulaşın, en kısa sürede dönüş yapacağız.
 						</p>
 					</div>
 				</div>
 
-				<div className="container mx-auto px-4 py-12">
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+				<div className="container mx-auto px-4 py-8 sm:py-10 md:py-12">
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
 						<div className="space-y-6">
-							<Card>
+							<Card className="contact-info-card">
 								<CardHeader>
 									{/* biome-ignore lint/style/useSelfClosingElements: <explanation> */}
 									<CardTitle></CardTitle>
@@ -173,9 +173,9 @@ const Contact: React.FC<ContactProps> = ({ navbarProps, sidebarProps }) => {
 
 						{/* Contact Form */}
 						<div className="space-y-6">
-							<Card>
+							<Card className="contact-form">
 								<CardHeader>
-									<CardTitle className="text-3xl font-bold text-center text-gray-900">
+									<CardTitle className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-gray-900">
 										Bizimle İletişime Geçin
 									</CardTitle>
 								</CardHeader>
@@ -185,7 +185,7 @@ const Contact: React.FC<ContactProps> = ({ navbarProps, sidebarProps }) => {
 										onSubmit={handleSubmit}
 										className="space-y-6"
 									>
-										<div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+										<div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
 											<div>
 												<label
 													htmlFor="user_name"
@@ -254,11 +254,11 @@ const Contact: React.FC<ContactProps> = ({ navbarProps, sidebarProps }) => {
 											/>
 										</div>
 
-										<div className="flex justify-end">
+										<div className="flex justify-center sm:justify-end">
 											<Button
 												type="submit"
 												disabled={isSubmitting}
-												className="w-full md:w-auto"
+												className="w-full sm:w-auto"
 											>
 												{isSubmitting ? (
 													<span className="flex items-center">

@@ -42,30 +42,30 @@ const Home: React.FC<HomeProps> = ({ navbarProps, sidebarProps }) => {
 			{/* Main Content */}
 			<div className="flex-1">
 				<main className="flex-grow">
-					<section className="relative bg-[#062e51] text-white pt-24 pb-32">
+					<section className="hero-section relative bg-[#062e51] text-white pt-24 pb-32">
 						<div className="container mx-auto px-4">
-							<div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-								<div className="space-y-8">
-									<h1 className="text-4xl md:text-6xl font-bold leading-tight">
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+								<div className="space-y-6 md:space-y-8">
+									<h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
 										Geleceğin Teknolojilerini
-										<br />
+										<br className="hidden sm:block" />
 										<span className="text-blue-400">Bugün</span> Öğrenin
 									</h1>
-									<p className="text-xl text-gray-300">
+									<p className="text-base sm:text-lg md:text-xl text-gray-300">
 										Başar Eğitim ile profesyonel yazılım dünyasına adım atın.
 										Endüstri standardında kurslar ve gerçek projelerle
 										kariyerinizi şekillendirin.
 									</p>
-									<div className="flex flex-wrap gap-4">
+									<div className="flex flex-col sm:flex-row flex-wrap gap-4">
 										<Button
-											onClick={() => handleNavigation("/kurslar")}
-											className="px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition-colors duration-200"
+											onClick={() => handleNavigation("/courses")}
+											className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition-colors duration-200"
 										>
 											Kurslara Göz At
 										</Button>
 										<Button
-											onClick={() => handleNavigation("/iletisim")}
-											className="px-8 py-4 bg-transparent border-2 border-white hover:bg-white hover:text-[#062e51] rounded-lg font-semibold transition-all duration-200"
+											onClick={() => handleNavigation("/contact")}
+											className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-transparent border-2 border-white hover:bg-white hover:text-[#062e51] rounded-lg font-semibold transition-all duration-200"
 										>
 											Bize Ulaşın
 										</Button>
@@ -75,9 +75,9 @@ const Home: React.FC<HomeProps> = ({ navbarProps, sidebarProps }) => {
 						</div>
 
 						{/* Stats Section */}
-						<div className="absolute bottom-0 left-0 right-0 transform translate-y-1/2">
+						<div className="stats-section absolute bottom-0 left-0 right-0 transform translate-y-1/2">
 							<div className="container mx-auto px-4">
-								<div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+								<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
 									<Card className="shadow-lg">
 										<CardContent className="p-6 text-center">
 											<div className="text-4xl font-bold text-[#062e51] mb-2">
@@ -119,18 +119,18 @@ const Home: React.FC<HomeProps> = ({ navbarProps, sidebarProps }) => {
 					</section>
 
 					{/* Popular Courses Section */}
-					<section className="pt-48 pb-24 bg-gray-50">
+					<section className="courses-section pt-36 sm:pt-40 md:pt-48 pb-16 sm:pb-20 md:pb-24 bg-gray-50">
 						<div className="container mx-auto px-4">
-							<div className="text-center mb-16">
-								<h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+							<div className="text-center mb-10 md:mb-16">
+								<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
 									Popüler Kurslarımız
 								</h2>
-								<p className="text-gray-600 text-lg">
+								<p className="text-gray-600 text-base sm:text-lg">
 									En çok tercih edilen kurslarımızla kariyerinizi başlatın
 								</p>
 							</div>
 
-							<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+							<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
 								<Card className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
 									<CardHeader className="h-64 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center p-8 rounded-t-2xl">
 										<CardTitle className="text-3xl font-bold text-white">
@@ -155,7 +155,10 @@ const Home: React.FC<HomeProps> = ({ navbarProps, sidebarProps }) => {
 										</div>
 									</CardContent>
 									<CardFooter className="p-6">
-										<Button className="w-full bg-blue-600 text-white py-7 rounded-lg hover:bg-blue-700 transition-colors duration-200">
+										<Button
+											onClick={() => handleNavigation("/courses")}
+											className="w-full bg-blue-600 text-white py-7 rounded-lg hover:bg-blue-700 transition-colors duration-200"
+										>
 											Detayları Gör
 										</Button>
 									</CardFooter>
@@ -185,7 +188,10 @@ const Home: React.FC<HomeProps> = ({ navbarProps, sidebarProps }) => {
 										</div>
 									</CardContent>
 									<CardFooter className="p-6">
-										<Button className="w-full bg-purple-600 text-white py-7 rounded-lg hover:bg-purple-700 transition-colors duration-200">
+										<Button
+											onClick={() => handleNavigation("/courses")}
+											className="w-full bg-purple-600 text-white py-7 rounded-lg hover:bg-purple-700 transition-colors duration-200"
+										>
 											Detayları Gör
 										</Button>
 									</CardFooter>
@@ -215,7 +221,10 @@ const Home: React.FC<HomeProps> = ({ navbarProps, sidebarProps }) => {
 										</div>
 									</CardContent>
 									<CardFooter className="p-6">
-										<Button className="w-full bg-green-600 text-white py-7 rounded-lg hover:bg-green-700 transition-colors duration-300">
+										<Button
+											onClick={() => handleNavigation("/courses")}
+											className="w-full bg-green-600 text-white py-7 rounded-lg hover:bg-green-700 transition-colors duration-300"
+										>
 											Detayları Gör
 										</Button>
 									</CardFooter>
@@ -223,28 +232,28 @@ const Home: React.FC<HomeProps> = ({ navbarProps, sidebarProps }) => {
 							</div>
 						</div>
 
-						<div className="text-center mt-12">
+						<div className="text-center mt-8 sm:mt-10 md:mt-12">
 							<Button
-								onClick={() => handleNavigation("/kurslar")}
-								className="px-16 py-8 bg-[#062e51] text-white rounded-lg hover:bg-blue-colors duration-200"
+								onClick={() => handleNavigation("/courses")}
+								className="px-8 sm:px-12 md:px-16 py-4 sm:py-6 md:py-8 bg-[#062e51] text-white rounded-lg hover:bg-blue-colors duration-200"
 							>
 								Tüm Kursları Gör
 							</Button>
 						</div>
 					</section>
 
-					<section className="py-20 bg-white">
+					<section className="why-us-section py-12 sm:py-16 md:py-20 bg-white">
 						<div className="container mx-auto px-4">
-							<div className="text-center mb-16">
-								<h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+							<div className="text-center mb-10 md:mb-16">
+								<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
 									Neden Biz?
 								</h2>
-								<p className="text-gray-600 text-lg">
+								<p className="text-gray-600 text-base sm:text-lg">
 									Başar Eğitim farkıyla kariyerinizi şekillendirin
 								</p>
 							</div>
 
-							<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+							<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
 								<Card className="text-center hover:shadow-xl transition-shadow duration-300">
 									<CardHeader>
 										<div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -431,26 +440,21 @@ const Home: React.FC<HomeProps> = ({ navbarProps, sidebarProps }) => {
 						</div>
 					</section>
 
-					<section className="py-20 bg-gray-50">
+					<section className="testimonials-section py-12 sm:py-16 md:py-20 bg-gray-50">
 						<div className="container mx-auto px-4">
-							<div className="text-center mb-16">
-								<h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+							<div className="text-center mb-10 md:mb-16">
+								<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4">
 									Öğrenci Başarıları
 								</h2>
-								<p className="text-gray-600 text-lg">
+								<p className="text-gray-600 text-base sm:text-lg">
 									Mezunlarımızın başarı hikayeleri
 								</p>
 							</div>
 
-							<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+							<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
 								<Card className="hover:shadow-xl transition-shadow duration-300">
 									<CardHeader>
 										<div className="flex items-center">
-											<img
-												src="/testimonial-1.jpg"
-												alt="Student"
-												className="w-12 h-12 rounded-full mr-4"
-											/>
 											<div>
 												<CardTitle className="text-lg">Ahmet Yılmaz</CardTitle>
 												<CardDescription>
@@ -471,11 +475,6 @@ const Home: React.FC<HomeProps> = ({ navbarProps, sidebarProps }) => {
 								<Card className="hover:shadow-xl transition-shadow duration-300">
 									<CardHeader>
 										<div className="flex items-center">
-											<img
-												src="C:\Users\Sevgi\Desktop\ofis proje\login_resim.jpg"
-												alt="Student"
-												className="w-12 h-12 rounded-full mr-4"
-											/>
 											<div>
 												<CardTitle className="text-lg">Ayşe Kaya</CardTitle>
 												<CardDescription>
@@ -496,11 +495,6 @@ const Home: React.FC<HomeProps> = ({ navbarProps, sidebarProps }) => {
 								<Card className="hover:shadow-xl transition-shadow duration-300">
 									<CardHeader>
 										<div className="flex items-center">
-											<img
-												src="login_resim.jpg"
-												alt="Student"
-												className="w-12 h-12 rounded-full mr-4"
-											/>
 											<div>
 												<CardTitle className="text-lg">Mehmet Demir</CardTitle>
 												<CardDescription>
@@ -521,25 +515,25 @@ const Home: React.FC<HomeProps> = ({ navbarProps, sidebarProps }) => {
 						</div>
 					</section>
 
-					<section className="py-20 bg-[#062e51] text-white">
+					<section className="py-12 sm:py-16 md:py-20 bg-[#062e51] text-white">
 						<div className="container mx-auto px-4 text-center">
-							<h2 className="text-3xl md:text-4xl font-bold mb-4">
+							<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4">
 								Kariyerinizi Dönüştürmeye Hazır mısınız?
 							</h2>
-							<p className="text-xl text-gray-300 mb-8">
+							<p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 md:mb-8">
 								Yazılım dünyasında yerinizi alın, geleceğin teknolojilerini
 								bugünden öğrenin.
 							</p>
-							<div className="flex flex-wrap justify-center gap-6">
+							<div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6">
 								<Button
-									onClick={() => handleNavigation("/kurslar")}
-									className="px-8 py-8 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition-colors duration-200"
+									onClick={() => handleNavigation("/courses")}
+									className="w-full sm:w-auto px-6 sm:px-8 py-4 sm:py-6 md:py-8 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition-colors duration-200"
 								>
 									Hemen Başlayın
 								</Button>
 								<Button
-									onClick={() => handleNavigation("/iletisim")}
-									className="px-8 py-8 bg-transparent border-2 border-white hover:bg-white hover:text-[#062e51] rounded-lg font-semibold transition-all duration-200"
+									onClick={() => handleNavigation("/contact")}
+									className="w-full sm:w-auto px-6 sm:px-8 py-4 sm:py-6 md:py-8 bg-transparent border-2 border-white hover:bg-white hover:text-[#062e51] rounded-lg font-semibold transition-all duration-200"
 								>
 									Bizimle İletişime Geçin
 								</Button>
